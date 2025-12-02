@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Shaik Siddiq Ahamad — Full-Stack Developer Portfolio
 
 A production-ready React + Vite + Tailwind portfolio for **Shaik Siddiq Ahamad**, featuring responsive layout, rain background, theme toggle, React Router navigation, and GitHub → Vercel CI/CD.
@@ -238,3 +239,7 @@ This is useful for low-power devices or accessibility preferences.
 
 
 
+=======
+# Portfolio
+My personal portfolio website built with React, Vite, Tailwind, and modern UI components. Showcasing projects, skills, DSA progress, and full-stack development work.
+>>>>>>> 2a861ef61c0ded234a42e93f7747ace8fd3536ec
