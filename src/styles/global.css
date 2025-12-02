@@ -1,0 +1,187 @@
+:root {
+  --bg: #071024;
+  --card: #0f172a;
+  --accent: #0ea5a4;
+  --muted: #6b7280;
+
+  --text: #e5e7eb;
+  --text-soft: #9ca3af;
+  --border-subtle: rgba(148, 163, 184, 0.3);
+}
+
+html[data-theme="muted"] {
+  --bg: #0b1220;
+  --card: #020617;
+  --accent: #22c55e;
+  --muted: #9ca3af;
+  --text: #e5e7eb;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0b1120 0, var(--bg) 45%, #020617 100%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Reusable card style */
+.app-card {
+  background-color: var(--card);
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid var(--border-subtle);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.app-card:hover {
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+  transform: translateY(-4px) rotate3d(1, 1, 0, 2deg);
+  border-color: var(--accent);
+}
+
+/* Buttons with subtle ripple */
+.btn-base {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #22c1c3);
+  color: #0f172a;
+  box-shadow: 0 10px 25px rgba(14, 165, 164, 0.5);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 35px rgba(14, 165, 164, 0.7);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.5);
+  color: var(--text);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Ripple effect using pseudo-element */
+.btn-base::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.25) 10%, transparent 10.01%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 0 0;
+  opacity: 0;
+  transition:
+    background-size 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.btn-base:active::after {
+  background-size: 180% 180%;
+  opacity: 0.2;
+}
+
+.btn-base:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Square nav tabs */
+.nav-tab {
+  @apply flex flex-col items-center justify-center text-xs font-medium uppercase tracking-wide;
+  background-color: rgba(15, 23, 42, 0.85);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  color: var(--text-soft);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nav-tab:hover {
+  color: #e5e7eb;
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
+  transform: translateY(-2px);
+}
+
+.nav-tab--active {
+  border-width: 2px;
+  border-color: var(--accent);
+  color: #e5e7eb;
+}
+
+/* Accessible focus ring */
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 2px #020617, 0 0 0 4px var(--accent);
+}
+
+/* Rain canvas toggle for low-power devices */
+html[data-rain-disabled="true"] canvas[data-rain-canvas="true"] {
+  display: none !important;
+}
+
+/* Skeleton loading */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgba(51, 65, 85, 0.85) 0%,
+    rgba(75, 85, 99, 0.85) 40%,
+    rgba(51, 65, 85, 0.85) 80%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position-x: -200%;
+  }
+  100% {
+    background-position-x: 200%;
+  }
+}
+
+
+
