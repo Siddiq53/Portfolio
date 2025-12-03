@@ -5,25 +5,27 @@ import Footer from "./Footer";
 
 const Layout = ({ children }) => {
   return (
-    <div className="relative min-h-screen text-slate-100">
-      {/* Rain gradient + canvas background */}
-      <RainBackground animate />
+    <div className="relative min-h-screen bg-[#F9FAFB] text-[#111827]">
+      {/* Subtle background, no heavy gradients */}
+      <RainBackground animate={false} />
 
-      <div className="relative z-10 flex min-h-screen flex-col">
-        <header className="px-4 pt-4 sm:px-6 lg:px-8">
-          <NavTabs />
-        </header>
+      <div className="relative z-10 flex min-h-screen flex-col px-4 sm:px-6 lg:px-8">
+        <div className="page-shell flex min-h-screen flex-col">
+          <header className="py-4 sticky top-4 z-20">
+            <NavTabs />
+          </header>
 
-        <main
-          className="flex-1 px-4 pb-16 pt-6 sm:px-6 lg:px-8"
-          aria-label="Main content"
-        >
-          {children}
-        </main>
+          <main
+            className="flex-1 pb-16 pt-4 space-y-10"
+            aria-label="Main content"
+          >
+            {children}
+          </main>
 
-        <footer className="px-4 pb-6 pt-4 sm:px-6 lg:px-8">
-          <Footer />
-        </footer>
+          <footer className="pb-8 pt-2">
+            <Footer />
+          </footer>
+        </div>
       </div>
     </div>
   );

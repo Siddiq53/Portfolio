@@ -7,7 +7,8 @@ const ProjectCard = ({
   tags = [],
   liveUrl,
   repoUrl,
-  loading = false
+  loading = false,
+  featured = false
 }) => {
   if (loading) {
     return (
@@ -29,14 +30,24 @@ const ProjectCard = ({
   }
 
   return (
-    <article className="app-card bg-slate-950/60" aria-label={title}>
+    <article
+      className={`app-card ${
+        featured ? "app-card--gradient border border-accent/60" : ""
+      }`}
+      aria-label={title}
+    >
       <header className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-base font-semibold text-slate-50">{title}</h3>
-          <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
+          <h3 className="text-base font-semibold text-[#2B2B2B]">{title}</h3>
+          <p className="mt-1 text-xs uppercase tracking-wide text-[#6A6A6A]">
             {tags.join(" • ")}
           </p>
         </div>
+        {featured && (
+          <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-emerald-300">
+            Featured
+          </span>
+        )}
       </header>
 
       <p className="mt-3 text-sm leading-relaxed text-slate-300">{description}</p>
@@ -57,7 +68,7 @@ const ProjectCard = ({
       <div className="mt-4 flex flex-wrap gap-3">
         {liveUrl && (
           <a
-            href={liveUrl}
+            href="https://al-husainy-care-frontend-6v2k89xtb.vercel.app"
             target="_blank"
             rel="noreferrer"
             className="btn-base btn-primary text-xs"

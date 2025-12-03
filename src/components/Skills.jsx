@@ -15,14 +15,17 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section aria-labelledby="skills-heading" className="app-card bg-slate-950/70">
+    <section
+      aria-labelledby="skills-heading"
+      className="app-card app-card--gradient bg-slate-950/80"
+    >
       <h2
         id="skills-heading"
-        className="text-xl font-semibold text-slate-50 sm:text-2xl"
+        className="text-xl font-semibold text-[#2B2B2B] sm:text-2xl"
       >
         Skills
       </h2>
-      <p className="mt-1 text-sm text-slate-300">
+      <p className="mt-1 text-sm text-[#6A6A6A]">
         A snapshot of tools and technologies used across full-stack projects.
       </p>
 
@@ -53,6 +56,29 @@ const Skills = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-4 grid gap-3 text-[0.7rem] text-slate-400 sm:grid-cols-3">
+        <div className="rounded-lg border border-slate-800/80 bg-slate-950/70 px-3 py-2">
+          <p className="font-semibold text-slate-200">Core languages</p>
+          <p className="mt-1">
+            Java and C++ for solving DSA problems and building performant
+            back-end logic.
+          </p>
+        </div>
+        <div className="rounded-lg border border-slate-800/80 bg-slate-950/70 px-3 py-2">
+          <p className="font-semibold text-slate-200">Frontend</p>
+          <p className="mt-1">
+            React + Tailwind CSS for building responsive, accessible interfaces.
+          </p>
+        </div>
+        <div className="rounded-lg border border-slate-800/80 bg-slate-950/70 px-3 py-2">
+          <p className="font-semibold text-slate-200">Backend &amp; realtime</p>
+          <p className="mt-1">
+            Node.js, Express, MongoDB and Socket.IO for REST APIs and live
+            experiences.
+          </p>
+        </div>
       </div>
     </section>
   );

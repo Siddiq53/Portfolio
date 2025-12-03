@@ -1,20 +1,16 @@
 :root {
-  --bg: #071024;
-  --card: #0f172a;
-  --accent: #0ea5a4;
-  --muted: #6b7280;
-
-  --text: #e5e7eb;
-  --text-soft: #9ca3af;
-  --border-subtle: rgba(148, 163, 184, 0.3);
-}
-
-html[data-theme="muted"] {
-  --bg: #0b1220;
-  --card: #020617;
-  --accent: #22c55e;
-  --muted: #9ca3af;
-  --text: #e5e7eb;
+  /* Black premium theme */
+  --bg: #000000; /* Background */
+  --card: #111111; /* Surface */
+  --primary: #A855F7; /* Accent purple */
+  --secondary: #1F1F1F; /* Sub-surface / borders */
+  --text: #FFFFFF; /* Text primary */
+  --text-soft: #B3B3B3; /* Text secondary */
+  --muted: #B3B3B3;
+  --success: #22C55E;
+  --warning: #F97316;
+  --error: #EF4444;
+  --border-subtle: #1F1F1F;
 }
 
 *,
@@ -25,16 +21,19 @@ html[data-theme="muted"] {
 
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #0b1120 0, var(--bg) 45%, #020617 100%);
+  background: radial-gradient(circle at 0% 0%, rgba(168, 85, 247, 0.16), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.85), transparent 58%),
+    var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  min-height: 100vh;
 }
 
 /* Reusable card style */
 .app-card {
   background-color: var(--card);
   border-radius: 16px;
-  padding: 12px;
+  padding: 16px;
   border: 1px solid var(--border-subtle);
   transition:
     transform 0.25s ease,
@@ -44,16 +43,45 @@ body {
 }
 
 .app-card:hover {
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
-  transform: translateY(-4px) rotate3d(1, 1, 0, 2deg);
-  border-color: var(--accent);
+  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.7);
+  transform: translateY(-2px);
+  border-color: rgba(168, 85, 247, 0.45);
+}
+
+/* Variant: gradient border card */
+.app-card--gradient {
+  position: relative;
+  background: radial-gradient(circle at top left, rgba(168, 85, 247, 0.16), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.85), transparent 60%),
+    var(--card);
+}
+
+.app-card--gradient::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 140deg,
+    rgba(168, 85, 247, 0.8),
+    rgba(59, 130, 246, 0.4),
+    rgba(15, 23, 42, 0.7),
+    rgba(168, 85, 247, 0.8)
+  );
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.25s ease;
+}
+
+.app-card--gradient:hover::before {
+  opacity: 1;
 }
 
 /* Buttons with subtle ripple */
 .btn-base {
   position: relative;
   overflow: hidden;
-  border-radius: 9999px;
+  border-radius: 0.75rem;
   padding: 0.6rem 1.4rem;
   border: 1px solid transparent;
   font-weight: 500;
@@ -72,25 +100,28 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #22c1c3);
-  color: #0f172a;
-  box-shadow: 0 10px 25px rgba(14, 165, 164, 0.5);
+  background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.12), transparent 55%),
+    var(--primary);
+  color: #ffffff;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 16px 35px rgba(14, 165, 164, 0.7);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.3);
+  opacity: 0.9;
 }
 
 .btn-outline {
-  background: transparent;
-  border-color: rgba(148, 163, 184, 0.5);
-  color: var(--text);
+  background-color: transparent;
+  border-color: rgba(179, 179, 179, 0.5);
+  color: var(--text-soft);
 }
 
 .btn-outline:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: rgba(248, 250, 252, 0.9);
+  color: #ffffff;
+  background-color: rgba(17, 17, 17, 0.9);
 }
 
 /* Ripple effect using pseudo-element */
@@ -121,9 +152,9 @@ body {
 /* Square nav tabs */
 .nav-tab {
   @apply flex flex-col items-center justify-center text-xs font-medium uppercase tracking-wide;
-  background-color: rgba(15, 23, 42, 0.85);
-  border-radius: 0.75rem;
-  border: 1px solid rgba(148, 163, 184, 0.4);
+  background-color: rgba(17, 17, 17, 0.9);
+  border-radius: 0.85rem;
+  border: 1px solid rgba(31, 31, 31, 0.8);
   color: var(--text-soft);
   transition:
     background-color 0.2s ease,
@@ -134,16 +165,16 @@ body {
 }
 
 .nav-tab:hover {
-  color: #e5e7eb;
-  border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
-  transform: translateY(-2px);
+  color: var(--text);
+  border-color: rgba(168, 85, 247, 0.9);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+  transform: translateY(-1px);
 }
 
 .nav-tab--active {
   border-width: 2px;
-  border-color: var(--accent);
-  color: #e5e7eb;
+  border-color: var(--primary);
+  color: var(--text);
 }
 
 /* Accessible focus ring */
@@ -152,7 +183,7 @@ body {
 }
 
 .focus-ring:focus-visible {
-  box-shadow: 0 0 0 2px #020617, 0 0 0 4px var(--accent);
+  box-shadow: 0 0 0 2px #000000, 0 0 0 4px var(--primary);
 }
 
 /* Rain canvas toggle for low-power devices */
@@ -166,9 +197,9 @@ html[data-rain-disabled="true"] canvas[data-rain-canvas="true"] {
   overflow: hidden;
   background: linear-gradient(
     90deg,
-    rgba(51, 65, 85, 0.85) 0%,
-    rgba(75, 85, 99, 0.85) 40%,
-    rgba(51, 65, 85, 0.85) 80%
+    rgba(31, 41, 55, 0.8) 0%,
+    rgba(55, 65, 81, 0.8) 40%,
+    rgba(31, 41, 55, 0.8) 80%
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.4s ease-in-out infinite;
@@ -182,6 +213,66 @@ html[data-rain-disabled="true"] canvas[data-rain-canvas="true"] {
     background-position-x: 200%;
   }
 }
+
+/* Page container */
+.page-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.section-shell {
+  border-radius: 28px;
+  padding: 1.75rem 1.5rem;
+  background: radial-gradient(circle at top, rgba(168, 85, 247, 0.18), transparent 60%),
+    rgba(17, 17, 17, 0.96);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(31, 31, 31, 0.85);
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    padding: 2.25rem 2rem;
+  }
+}
+
+/* Section entry animation */
+.section-fade-up {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: section-fade-up 0.6s ease-out forwards;
+}
+
+@keyframes section-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section heading pattern */
+.section-heading-kicker {
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--text-soft);
+}
+
+.section-heading-main {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.section-heading-sub {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
 
 
 

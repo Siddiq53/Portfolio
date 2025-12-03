@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import ThemeToggle from "./ThemeToggle";
 
 const TABS = [
   { label: "About", path: "/" },
   { label: "Projects", path: "/projects" },
   { label: "Skills", path: "/skills" },
   { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" }
+  { label: "Contact", path: "/contact" },
 ];
 
 // Accessible square-tab navigation with mobile hamburger
@@ -41,11 +40,14 @@ const NavTabs = () => {
         [
           "nav-tab focus-ring",
           isMobile ? "w-full h-14 flex-row" : "w-24 h-24",
-          isActive ? "nav-tab--active" : ""
+          isActive ? "nav-tab--active" : "",
         ].join(" ")
       }
       role="tab"
-      aria-selected={location.pathname === tab.path || (tab.path === "/" && location.pathname === "/")}
+      aria-selected={
+        location.pathname === tab.path ||
+        (tab.path === "/" && location.pathname === "/")
+      }
       aria-posinset={idx + 1}
       aria-setsize={TABS.length}
       tabIndex={0}
@@ -57,19 +59,17 @@ const NavTabs = () => {
   return (
     <nav
       aria-label="Primary"
-      className="app-card flex items-center justify-between gap-4 bg-slate-950/50 backdrop-blur"
+      className="app-card flex items-center justify-between gap-4 bg-white/90 backdrop-blur"
     >
       <div className="flex items-center gap-2">
-        <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent/20 text-accent">
+        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#E5E7EB] text-[#111827] shadow-md">
           SSA
         </span>
         <div className="flex flex-col">
-          <span className="text-sm font-semibold text-slate-100">
+          <span className="text-sm font-semibold text-[#111827]">
             Shaik Siddiq Ahamad
           </span>
-          <span className="text-xs text-slate-400">
-            Full-Stack Developer
-          </span>
+          <span className="text-xs text-[#6B7280]">Full-Stack Developer</span>
         </div>
       </div>
 
@@ -83,21 +83,22 @@ const NavTabs = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <ThemeToggle />
         {/* Mobile hamburger */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/70 bg-slate-900/70 text-slate-100 hover:border-accent focus-ring md:hidden"
-          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E7EB] bg-white text-[#111827] hover:border-[#4B5563] focus-ring md:hidden"
+          aria-label={
+            isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-nav-menu"
           onClick={() => setIsMobileMenuOpen((v) => !v)}
         >
           <span className="sr-only">Toggle navigation</span>
           <span className="flex flex-col gap-1.5">
-            <span className="block h-0.5 w-5 rounded-full bg-slate-200" />
-            <span className="block h-0.5 w-4 rounded-full bg-slate-400" />
-            <span className="block h-0.5 w-3 rounded-full bg-slate-500" />
+            <span className="block h-0.5 w-5 rounded-full bg-[#111827]" />
+            <span className="block h-0.5 w-4 rounded-full bg-[#6B7280]" />
+            <span className="block h-0.5 w-3 rounded-full bg-[#9CA3AF]" />
           </span>
         </button>
       </div>
@@ -106,7 +107,7 @@ const NavTabs = () => {
       {isMobileMenuOpen && (
         <div
           id="mobile-nav-menu"
-          className="absolute left-0 right-0 top-[4.25rem] z-30 mx-4 mt-2 rounded-2xl border border-slate-700/80 bg-slate-950/95 p-3 shadow-2xl md:hidden"
+          className="absolute left-0 right-0 top-[4.25rem] z-30 mx-4 mt-2 rounded-2xl border border-[#E5E7EB] bg-white p-3 shadow-[0_26px_70px_rgba(15,23,42,0.18)] md:hidden"
         >
           <div
             role="tablist"
@@ -122,6 +123,3 @@ const NavTabs = () => {
 };
 
 export default NavTabs;
-
-
-

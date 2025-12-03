@@ -37,20 +37,20 @@ const Contact = () => {
   return (
     <section
       aria-labelledby="contact-heading"
-      className="grid gap-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1.2fr)]"
+      className="section-fade-up grid gap-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1.2fr)]"
     >
-      <div className="app-card bg-slate-950/75">
+      <div className="app-card app-card--gradient">
         <h1
           id="contact-heading"
-          className="text-2xl font-semibold text-slate-50 sm:text-3xl"
+          className="text-2xl font-semibold text-[#2B2B2B] sm:text-3xl"
         >
           Contact
         </h1>
-        <p className="mt-2 text-sm text-slate-300">
+        <p className="mt-2 text-sm text-[#6A6A6A]">
           Whether you&apos;re interested in collaborating on a project, have a
           role in mind, or just want to talk tech, feel free to reach out.
         </p>
-        <ul className="mt-4 space-y-1 text-sm text-slate-300">
+        <ul className="mt-4 space-y-1 text-sm text-[#6A6A6A]">
           <li>
             <span className="font-medium text-slate-100">Email:</span>{" "}
             <a
@@ -85,11 +85,11 @@ const Contact = () => {
         </ul>
       </div>
 
-      <div className="app-card bg-slate-950/80">
-        <h2 className="text-lg font-semibold text-slate-50">
+      <div className="app-card">
+        <h2 className="text-lg font-semibold text-[#2B2B2B]">
           Quick message
         </h2>
-        <p className="mt-1 text-xs text-slate-400">
+        <p className="mt-1 text-xs text-[#6A6A6A]">
           This form posts to a sample Vercel serverless function and logs the
           payload. Wire it up to your email provider or notification system
           before using in production.
@@ -99,7 +99,7 @@ const Contact = () => {
           <div>
             <label
               htmlFor="name"
-              className="block text-xs font-medium text-slate-200"
+              className="block text-xs font-medium text-[#2B2B2B]"
             >
               Name
             </label>
@@ -107,7 +107,7 @@ const Contact = () => {
               id="name"
               name="name"
               required
-              className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
+              className="mt-1 w-full rounded-lg border border-[rgba(148,116,80,0.35)] bg-white px-3 py-2 text-sm text-[#2B2B2B] outline-none focus:border-[var(--secondary)] focus:ring-1 focus:ring-[var(--secondary)]"
               placeholder="Your name"
             />
           </div>
@@ -115,7 +115,7 @@ const Contact = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-xs font-medium text-slate-200"
+              className="block text-xs font-medium text-[#2B2B2B]"
             >
               Email
             </label>
@@ -124,7 +124,7 @@ const Contact = () => {
               name="email"
               type="email"
               required
-              className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
+              className="mt-1 w-full rounded-lg border border-[rgba(148,116,80,0.35)] bg-white px-3 py-2 text-sm text-[#2B2B2B] outline-none focus:border-[var(--secondary)] focus:ring-1 focus:ring-[var(--secondary)]"
               placeholder="you@example.com"
             />
           </div>
@@ -132,7 +132,7 @@ const Contact = () => {
           <div>
             <label
               htmlFor="message"
-              className="block text-xs font-medium text-slate-200"
+              className="block text-xs font-medium text-[#2B2B2B]"
             >
               Message
             </label>
@@ -141,7 +141,7 @@ const Contact = () => {
               name="message"
               required
               rows={4}
-              className="mt-1 w-full resize-none rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
+              className="mt-1 w-full resize-none rounded-lg border border-[rgba(148,116,80,0.35)] bg-white px-3 py-2 text-sm text-[#2B2B2B] outline-none focus:border-[var(--secondary)] focus:ring-1 focus:ring-[var(--secondary)]"
               placeholder="How can we collaborate?"
             />
           </div>

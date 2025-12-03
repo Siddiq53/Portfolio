@@ -44,7 +44,7 @@ const RainBackground = ({ animate = true }) => {
         y: Math.random() * height,
         len: 10 + Math.random() * 18,
         speed: 40 + Math.random() * 40,
-        opacity: 0.12 + Math.random() * 0.15
+        opacity: 0.12 + Math.random() * 0.15,
       }));
     };
 
@@ -98,7 +98,8 @@ const RainBackground = ({ animate = true }) => {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-950/70 via-slate-950 to-slate-950" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(198,166,103,0.18),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(139,94,60,0.18),transparent_58%),linear-gradient(to-b,#F7F5F2,#F0ECE5)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0,rgba(198,166,103,0.12),transparent_55%),radial-gradient(circle_at_90%_100%,rgba(139,94,60,0.12),transparent_55%)] mix-blend-multiply opacity-80" />
       <canvas
         ref={canvasRef}
         data-rain-canvas="true"
@@ -109,6 +110,3 @@ const RainBackground = ({ animate = true }) => {
 };
 
 export default RainBackground;
-
-
-

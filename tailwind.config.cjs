@@ -5,10 +5,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: "#0ea5a4"
+        background: "#000000",
+        surface: "#111111",
+        accent: "#A855F7",
+        "text-primary": "#FFFFFF",
+        "text-secondary": "#B3B3B3",
+        "border-subtle": "#1F1F1F"
       },
       boxShadow: {
-        card: "0 14px 40px rgba(15,23,42,0.8)"
+        card: "0 24px 80px rgba(0,0,0,0.9)"
+      },
+      maxWidth: {
+        "7xl": "80rem"
       }
     }
   },
