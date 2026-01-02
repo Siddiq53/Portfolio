@@ -3,44 +3,42 @@ import { Github, Mail, Linkedin } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="border-t border-border-subtle/80 bg-black/90">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-[0.75rem] text-text-secondary sm:flex-row sm:px-6 lg:px-8">
-        <p>
-          © {new Date().getFullYear()} Shaik Siddiq Ahamad. Built with React, Vite,
-          Tailwind CSS, and Framer Motion.
-        </p>
-        <div className="flex items-center gap-4">
-          <a
-            href="mailto:siddiqshaik053@gmail.com"
-            className="inline-flex items-center gap-1 hover:text-text-primary"
-          >
-            <Mail size={14} />
-            <span>Email</span>
-          </a>
-          <a
-            href="https://github.com/Siddiq53/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 hover:text-text-primary"
-          >
-            <Github size={14} />
-            <span>GitHub</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/siddiq05/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 hover:text-text-primary"
-          >
-            <Linkedin size={14} />
-            <span>LinkedIn</span>
-          </a>
+    <footer className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-inner">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            © {new Date().getFullYear()} Shaik Siddiq Ahamad. Built with React, Vite,
+            Tailwind CSS, and Framer Motion.
+          </p>
+          <div className="flex items-center space-x-6">
+            <a
+              href="mailto:siddiqshaik053@gmail.com"
+              className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200"
+              aria-label="Email"
+            >
+              <Mail size={16} />
+            </a>
+            <a
+              href="https://github.com/Siddiq53/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
+              aria-label="GitHub"
+            >
+              <Github size={16} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/siddiq05/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-gray-500 hover:text-blue-700 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={16} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
   );
 };
-
-
-
-

@@ -7,7 +7,7 @@ export const SKILL_CATEGORIES = [
   {
     id: "frontend",
     label: "Frontend",
-    skills: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Responsive Design"],
+    skills: ["React", "Redux", "Vite", "Tailwind CSS", "Framer Motion", "Responsive Design"],
   },
   {
     id: "backend",

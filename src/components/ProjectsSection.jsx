@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PROJECTS, PROJECT_CATEGORIES } from "../data/projects";
-import { X, ExternalLink, Github, Search } from "lucide-react";
+import { X, ExternalLink, Github, Search, ArrowRight } from "lucide-react";
 
 const sortProjects = (projects, sort) => {
   if (sort === "featured") {
@@ -41,45 +41,24 @@ export const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="pt-4"
+      className="py-16 md:py-24 bg-gray-50"
       aria-labelledby="projects-heading"
     >
-      <div className="mx-auto max-w-7xl space-y-6">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-text-secondary">
-              Projects
-            </p>
-            <h2
-              id="projects-heading"
-              className="text-2xl font-semibold tracking-tight text-text-primary sm:text-3xl"
-            >
-              Selected work.
-            </h2>
-            <p className="max-w-xl text-sm leading-relaxed text-text-secondary sm:text-base">
-              Real-world projects that combine solid engineering with a calm,
-              focused interface.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
-            <label className="flex items-center gap-2">
-              <span className="hidden sm:inline text-[0.7rem] uppercase tracking-[0.2em]">
-                Sort
-              </span>
-              <motion.select
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-                className="rounded-xl border border-border-subtle bg-black/80 px-3 py-2 text-xs text-text-secondary outline-none focus:border-accent focus:ring-1 focus:ring-accent"
-                whileHover={{ scale: 1.02 }}
-              >
-                <option value="featured">Featured</option>
-                <option value="latest">Latest</option>
-              </motion.select>
-            </label>
-          </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block px-3 py-1 mb-4 text-xs font-medium rounded-full bg-primary-50 text-primary-700">
+            My Work
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Selected Projects
+          </h2>
+          <p className="text-lg text-gray-600">
+            Real-world projects that combine solid engineering with a clean,
+            focused interface.
+          </p>
         </div>
 
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
           <div className="flex flex-wrap gap-2">
             {PROJECT_CATEGORIES.map((category) => {
               const isActive = activeCategory === category;
@@ -88,13 +67,13 @@ export const ProjectsSection = () => {
                   key={category}
                   type="button"
                   onClick={() => setActiveCategory(category)}
-                  className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                     isActive
-                      ? "border-accent bg-accent/20 text-text-primary"
-                      : "border-border-subtle bg-black/60 text-text-secondary hover:border-accent/70"
+                      ? 'bg-primary-600 text-white shadow-md'
+                      : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
                   }`}
                   whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {category}
                 </motion.button>
@@ -103,103 +82,109 @@ export const ProjectsSection = () => {
           </div>
 
           <div className="relative w-full md:w-64">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-secondary" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search projects..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-xl border border-border-subtle bg-black/80 px-8 py-2 text-xs text-text-primary placeholder:text-text-secondary/60 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
+              className="w-full rounded-lg border border-gray-200 bg-white px-8 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100 transition-all duration-200"
             />
           </div>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project, index) => (
             <motion.article
               key={project.id}
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              whileHover={{ scale: 1.02, y: -6, rotate: -1 }}
-              whileTap={{ scale: 0.98 }}
+              viewport={{ once: true, amount: 0.2 }}
+              whileHover={{ y: -8 }}
               transition={{
-                duration: 0.35,
+                duration: 0.3,
                 delay: index * 0.05,
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 260,
-                damping: 22,
+                ease: "easeOut"
               }}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border-subtle bg-[#0B0B0B]/90 shadow-card"
+              className="group flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-all duration-300"
             >
-              <div className="relative h-40 overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
                 <div
                   className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                   style={{ backgroundImage: `url(${project.image})` }}
                 />
                 {project.featured && (
-                  <span className="absolute left-3 top-3 rounded-full bg-accent/80 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-black">
+                  <span className="absolute left-3 top-3 rounded-full bg-accent-500 px-3 py-1 text-xs font-semibold text-white">
                     Featured
                   </span>
                 )}
               </div>
-              <div className="flex flex-1 flex-col gap-3 p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-sm font-semibold text-text-primary">
+              <div className="flex flex-1 flex-col p-5">
+                <div className="flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-lg font-semibold text-gray-900">
                       {project.title}
                     </h3>
-                    <p className="mt-1 text-xs text-text-secondary">
-                      {project.description}
-                    </p>
+                    <motion.button
+                      type="button"
+                      onClick={() => setActiveProject(project)}
+                      className="text-sm font-medium text-primary-600 hover:text-primary-700 flex items-center gap-1"
+                      whileHover={{ x: 2 }}
+                    >
+                      Details <ArrowRight className="h-4 w-4" />
+                    </motion.button>
                   </div>
-                  <motion.button
-                    type="button"
-                    onClick={() => setActiveProject(project)}
-                    className="rounded-full border border-border-subtle bg-black/70 px-2 py-1 text-[0.68rem] uppercase tracking-[0.16em] text-text-secondary hover:border-accent hover:text-text-primary"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Details
-                  </motion.button>
+                  <p className="mt-2 text-sm text-gray-600">
+                    {project.description}
+                  </p>
                 </div>
 
-                <div className="mt-1 flex flex-wrap gap-1.5">
-                  {project.tech.map((tech) => (
-                    <motion.span
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.tech.slice(0, 3).map((tech) => (
+                    <span
                       key={tech}
-                      whileHover={{ scale: 1.05 }}
-                      className="rounded-full border border-border-subtle bg-black/70 px-2 py-0.5 text-[0.7rem] text-text-secondary"
+                      className="rounded-full bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-600 border border-gray-100"
                     >
                       {tech}
-                    </motion.span>
+                    </span>
                   ))}
+                  {project.tech.length > 3 && (
+                    <span className="rounded-full bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-500 border border-gray-100">
+                      +{project.tech.length - 3} more
+                    </span>
+                  )}
                 </div>
 
-                <div className="mt-3 flex flex-wrap gap-3 text-xs">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-text-secondary hover:text-text-primary"
-                    >
-                      <ExternalLink size={14} />
-                      <span>Live</span>
-                    </a>
-                  )}
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-text-secondary hover:text-text-primary"
-                    >
-                      <Github size={14} />
-                      <span>Code</span>
-                    </a>
-                  )}
+                <div className="mt-4 flex items-center justify-between pt-4 border-t border-gray-100">
+                  <div className="flex items-center gap-1 text-xs text-gray-500">
+                    <span>{project.category}</span>
+                    <span>•</span>
+                    <span>{project.year}</span>
+                  </div>
+                  <div className="flex gap-3">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-gray-500 hover:text-primary-600 transition-colors"
+                        title="View Live"
+                      >
+                        <ExternalLink size={16} />
+                      </a>
+                    )}
+                    {project.repoUrl && (
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-gray-500 hover:text-gray-900 transition-colors"
+                        title="View Code"
+                      >
+                        <Github size={16} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.article>
@@ -209,85 +194,102 @@ export const ProjectsSection = () => {
         <AnimatePresence>
           {activeProject && (
             <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              onClick={(e) => e.target === e.currentTarget && setActiveProject(null)}
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.92, y: 10 }}
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.92, y: 10 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-border-subtle bg-[#050505] p-5 shadow-card"
+                className="w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-text-primary">
-                      {activeProject.title}
-                    </h3>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-text-secondary">
-                      {activeProject.category} • {activeProject.year}
-                    </p>
-                  </div>
-                  <motion.button
+                <div className="relative h-64 bg-gray-100">
+                  <div
+                    className="h-full w-full bg-cover bg-center"
+                    style={{ backgroundImage: `url(${activeProject.image})` }}
+                  />
+                  <button
                     type="button"
                     onClick={() => setActiveProject(null)}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border-subtle bg-black/80 text-text-secondary hover:border-accent hover:text-text-primary"
+                    className="absolute right-4 top-4 rounded-full bg-white/90 p-1.5 text-gray-500 hover:bg-white hover:text-gray-900 transition-colors"
                     aria-label="Close project details"
                   >
-                    <X size={14} />
-                  </motion.button>
+                    <X size={18} />
+                  </button>
                 </div>
 
-                <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-                  {activeProject.description}
-                </p>
-
-                <div className="mt-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-secondary">
-                    Tech
-                  </p>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {activeProject.tech.map((tech) => (
-                      <motion.span
-                        key={tech}
-                        whileHover={{ scale: 1.05 }}
-                        className="rounded-full border border-border-subtle bg-black/80 px-2.5 py-0.5 text-[0.7rem] text-text-secondary"
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
+                <div className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        {activeProject.title}
+                      </h3>
+                      <div className="mt-1 flex items-center gap-2">
+                        <span className="rounded-full bg-primary-100 px-3 py-0.5 text-xs font-medium text-primary-800">
+                          {activeProject.category}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          • {activeProject.year}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-2">
+                      {activeProject.liveUrl && (
+                        <motion.a
+                          href={activeProject.liveUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors"
+                          whileHover={{ y: -1 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <ExternalLink size={14} />
+                          <span>Live Demo</span>
+                        </motion.a>
+                      )}
+                      {activeProject.repoUrl && (
+                        <motion.a
+                          href={activeProject.repoUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-gray-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+                          whileHover={{ y: -1 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Github size={14} />
+                          <span>View Code</span>
+                        </motion.a>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                <div className="mt-4 flex flex-wrap gap-3 text-xs">
-                  {activeProject.liveUrl && (
-                    <motion.a
-                      href={activeProject.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 rounded-full border border-border-subtle bg-black/80 px-3 py-1 text-text-secondary hover:border-accent hover:text-text-primary"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <ExternalLink size={14} />
-                      <span>View live</span>
-                    </motion.a>
-                  )}
-                  {activeProject.repoUrl && (
-                    <motion.a
-                      href={activeProject.repoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 rounded-full border border-border-subtle bg-black/80 px-3 py-1 text-text-secondary hover:border-accent hover:text-text-primary"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <Github size={14} />
-                      <span>View code</span>
-                    </motion.a>
-                  )}
+                  <div className="mt-6 space-y-4">
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-900 mb-2">About the Project</h4>
+                      <p className="text-gray-600">
+                        {activeProject.description}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-900 mb-2">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {activeProject.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded-full bg-gray-50 px-3 py-1 text-xs font-medium text-gray-600 border border-gray-200"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
